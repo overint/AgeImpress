@@ -8,12 +8,13 @@ class ApiController extends Controller
 {
     public function calculate()
     {
-        if (empty($_POST)){ $this->abort(405); }
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST'){ $this->abort(405); }
+        $json = json_decode(file_get_contents('php://input'));
 
-        if (isset($_POST['name']) && isset($_POST['dob']))
+        if (isset($json->name) && isset($json->dob))
         {
 
-            if (! preg_match('/((?|19|20)\d\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])/', $_POST['dob']))
+            if (! preg_match('/((?|19|20)\d\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])/', $json->dob))
             {
                 $this->returnJson([
                     'success' => false,
@@ -21,9 +22,27 @@ class ApiController extends Controller
                 ]);
             }
 
+            $log = new Log($this->dbh);
+
+            if ($log->checkLogs($json->name))
+            {
+                $this->returnJson([
+                    'success' => false,
+                    'error' => 'Name already checked!'
+                ]);
+            }
+
             // Lets not reinvent the wheel :)
             $now = Carbon::now();
-            $dob = new Carbon($_POST['dob']);
+            $dob = new Carbon($json->dob);
+
+            if ($dob->isFuture())
+            {
+                $this->returnJson([
+                    'success' => false,
+                    'error' => 'You have not been born yet!'
+                ]);
+            }
 
             $data = [
                 'years' => $dob->diffInYears($now),
@@ -32,8 +51,8 @@ class ApiController extends Controller
                 'hours' => $dob->diffInHours($now)
             ];
 
-            $log = new Log($this->dbh);
-            $log->saveLog($_POST['name'], $_POST['dob'], $data);
+
+            $log->saveLog($json->name, $json->dob, $data['years'], $data['months'], $data['days'], $data['hours']);
 
             $this->returnJson([
                 'success' => true,

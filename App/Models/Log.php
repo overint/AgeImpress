@@ -4,14 +4,16 @@ use PDO;
 
 class Log extends Model
 {
-    public function saveLog($name, $dob, $data)
+    public function saveLog($name, $dob, $years, $months, $days, $hours)
     {
         $name = $this->sanitiseHTML($name);
-        $data = json_encode($data);
-        $sth = $this->dbh->prepare("INSERT INTO `logs`(`name`, `dob`, `data`) VALUES (:name , :dob, :data)");
+        $sth = $this->dbh->prepare("INSERT INTO `logs`(`name`, `dob`, `years`, `months`, `days`, `hours`) VALUES (:name , :dob, :years, :months, :days, :hours)");
         $sth->bindParam(":name", $name);
         $sth->bindParam(":dob", $dob);
-        $sth->bindParam(":data", $data);
+        $sth->bindParam(":years", $years);
+        $sth->bindParam(":months", $months);
+        $sth->bindParam(":days", $days);
+        $sth->bindParam(":hours", $hours);
         $sth->execute();
     }
 
@@ -30,6 +32,15 @@ class Log extends Model
         $sth->execute();
         $sth->execute();
         return $sth->fetch()[0];
+
+    }
+
+    public function checkLogs($name)
+    {
+        $sth = $this->dbh->prepare("SELECT COUNT(*) FROM `logs` WHERE `name` = :name");
+        $sth->bindParam(":name", $name);
+        $sth->execute();
+        return $sth->fetch()[0] > 0 ? true : false;
 
     }
 
