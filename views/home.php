@@ -14,6 +14,9 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-resource@1.2.0/dist/vue-resource.min.js"></script>
     <script src="js/sweetalert.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+
     <style>
         body {
             padding-top: 100px;
@@ -59,7 +62,7 @@
                         <br>
                         <div class="col-md-10 col-md-offset-1">
                             <input type="text" class="form-control text-center" v-model='name' placeholder="Your Name"><br>
-                            <input type="text" class="form-control text-center" v-model='dob' placeholder="Your DOB"><br>
+                            <input id="dob" type="text" class="form-control text-center" v-model='dob' placeholder="Your DOB"><br>
                             <br>
                             <button type="button" class="btn btn-primary btn-block" v-on:click="checkDOB"><i class="fa fa-cloud-download"></i>&nbsp;Impress Me!</button>
                             <br>
@@ -114,4 +117,10 @@
     </div>
 </div>
 <script src="js/app.js"></script>
+<script>
+    $('#dob').datepicker({
+        format: "yyyy-mm-dd",
+        orientation: "bottom auto"
+    });
+</script>
 </body>
