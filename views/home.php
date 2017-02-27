@@ -117,10 +117,4 @@
     </div>
 </div>
 <script src="js/app.js"></script>
-<script>
-    $('#dob').datepicker({
-        format: "yyyy-mm-dd",
-        orientation: "bottom auto"
-    });
-</script>
 </body>

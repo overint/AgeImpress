@@ -15,12 +15,7 @@ var app = new Vue({
           swal("Error!", "You must enter your name!", "error");
           return;
       }
-        if (this.dob == '')
-        {
-            swal("Error!", "You must enter your DOB!", "error");
-            return;
-        }
-      this.$http.post('api/calculate', {name: this.name, dob: this.dob}).then(response => {
+      this.$http.post('api/calculate', {name: this.name, dob: $('#dob').val()}).then(response => {
         if (response.body.success){
           this.current = response.body;
           this.hasResult = true;
@@ -39,6 +34,10 @@ var app = new Vue({
   },
   mounted : function() {
       this.getHistory();
+      $('#dob').datepicker({
+          format: "yyyy-mm-dd",
+          orientation: "bottom auto"
+      });
   },
 });
 
