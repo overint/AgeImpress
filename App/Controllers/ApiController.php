@@ -56,11 +56,7 @@ class ApiController extends Controller
 
             $this->returnJson([
                 'success' => true,
-                'years' => $dob->diffInYears($now),
-                'months' => $dob->diffInMonths($now),
-                'days' => $dob->diffInDays($now),
-                'hours' => $dob->diffInHours($now)
-            ]);
+            ] + $data);
 
         } else {
             $this->abort(400);

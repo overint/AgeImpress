@@ -35,8 +35,9 @@ class Framework
             $routeData = explode('@', $routes[$path]);
             $controllerName = $routeData[0];
             $controllerNamespaced = 'App\Controllers\\' . $routeData[0];
-            $methodName = $routeData[1];
             $controllerPath = APP_ROOT . '/Controllers/' . $controllerName . '.php';
+            $methodName = $routeData[1];
+
             if (file_exists($controllerPath))
             {
                 $this->dbh = Database::connect();
