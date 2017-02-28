@@ -51,6 +51,20 @@ class ApiController extends Controller
                 'hours' => $dob->diffInHours($now)
             ];
 
+            //In case you wanted code w/o libraries
+
+            $nowAlt = time();
+            $dobAlt = strtotime($json->dob);
+            $diff = $nowAlt - $dobAlt;
+
+
+            $dataAlt = [
+                'years' => floor($diff / (60 * 60 * 24 * 365)),
+                'months' => floor($diff / (60 * 60 * 24 * 30)),
+                'days' => floor($dobAlt / (60 * 60 * 24)),
+                'hours' => floor($diff / (60 * 60))
+            ];
+
 
             $log->saveLog($json->name, $json->dob, $data['years'], $data['months'], $data['days'], $data['hours']);
 
