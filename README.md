@@ -1,10 +1,10 @@
 # AgeImpress
 ###Installation Instructions
 
-1) Copy files to web server & configure database settings in App\config.php.
-2) Create the mysql table from the provided `db.sql` file.
-3) Create a rewrite for to handle the routing. You can use the nginx config below, or create your own.
-4) Done! The site should be live on your server.
+1) Copy files to web server & configure database settings in App\config.php.  
+2) Create the mysql table from the provided `db.sql` file.  
+3) Create a rewrite for to handle the routing. You can use the nginx config below, or create your own.  
+4) Done! The site should be live on your server.  
 
     server {
         listen 80;
