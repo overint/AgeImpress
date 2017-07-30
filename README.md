@@ -1,5 +1,5 @@
 # AgeImpress
-###Installation Instructions
+## Installation Instructions
 
 1) Copy files to web server & configure database settings in App\config.php.  
 2) Create the mysql table from the provided `db.sql` file.  
