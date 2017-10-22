@@ -1,7 +1,7 @@
 # Age Exercise 
 ## What is it?
-I was given a task to create a site to calculate the age of base on birthday as part of job application.   
-I went a little overboard and wrote a mini MVC framework & a vue js front end that makes requests to the API.
+I was given a task to create a application to calculate my age in hours of as part of job application.   
+I went a little overboard and wrote a mini MVC framework & a vue js front end that makes requests to the API :)
 
 ## Given Task
 ![task](https://i.imgur.com/RXOR0Db.png)
