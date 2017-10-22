@@ -1,4 +1,11 @@
-# AgeImpress
+# Age Exercise 
+## What is it?
+I was given a task to create a site to calculate the age of base on birthday as part of job application.   
+I went a little overboard and wrote a mini MVC framework & a vue js front end that makes requests to the API.
+
+## Given Task
+![task](https://i.imgur.com/RXOR0Db.png)
+
 ## Installation Instructions
 
 1) Copy files to web server & configure database settings in App\config.php.  
@@ -6,6 +13,7 @@
 3) Create a rewrite for to handle the routing. You can use the nginx config below, or create your own.  
 4) Done! The site should be live on your server.  
 
+```
     server {
         listen 80;
         server_name _;
@@ -48,4 +56,4 @@
             deny all;
         }
     }
-
+```
